@@ -29,16 +29,22 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 if(ANDROID)
   add_library(lichat SHARED
     main.cpp
-    widget.cpp
-    widget.h
-    widget.ui
+    logindialog.cpp
+    logindialog.h
+    logindialog.ui
+    res.qrc
+    helper.cpp
+    helper.h
   )
 else()
   add_executable(lichat
     main.cpp
-    widget.cpp
-    widget.h
-    widget.ui
+    logindialog.cpp
+    logindialog.h
+    logindialog.ui
+    res.qrc
+    helper.cpp
+    helper.h
   )
 endif()
 

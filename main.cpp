@@ -1,11 +1,13 @@
-#include "widget.h"
-
 #include <QApplication>
+#include "logindialog.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Widget w;
-    w.show();
+
+    LoginDialog loginDialog;
+
+    loginDialog.show();
+
     return a.exec();
 }
