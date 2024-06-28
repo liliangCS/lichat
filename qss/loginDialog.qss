@@ -1,0 +1,17 @@
+#loginFrame {
+    background-color: skyblue;
+    border-radius: 3px;
+}
+
+#header {
+    background-color: #fff;
+}
+
+#closeBtn {
+    border: none;
+    font-size: 24px;
+}
+
+#closeBtn:hover {
+    background-color: #eee;
+}
