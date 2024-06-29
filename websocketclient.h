@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <QWebSocket>
 
+
+
 class WebSocketClient : public QObject
 {
     Q_OBJECT
@@ -13,6 +15,8 @@ public:
     WebSocketClient& operator = (const WebSocketClient&) = delete;
 
     static WebSocketClient* getInstance();
+    //获取与服务器的连接状态
+    bool getConnState();
 
 private:
     static WebSocketClient *instance;

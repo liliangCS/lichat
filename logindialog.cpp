@@ -49,11 +49,13 @@ LoginDialog::LoginDialog(QWidget *parent) :
             return;
         }
 
+        if (!WebSocketClient::getInstance()->getConnState()) {
+            QMessageBox::information(this, "提示", "与服务器的连接断开，请检查服务器环境");
+            return;
+        }
+
         QString username = ui->usernameLineEdit->text().trimmed();
-
         qDebug() << username;
-
-        WebSocketClient::getInstance();
     });
 }
 

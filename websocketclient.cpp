@@ -10,6 +10,11 @@ WebSocketClient* WebSocketClient::getInstance()
     return instance;
 }
 
+bool WebSocketClient::getConnState()
+{
+    return m_connState;
+}
+
 WebSocketClient::WebSocketClient(const QUrl &url, QObject *parent) : QObject(parent), m_webSocket(new QWebSocket()), m_url(url), m_connState(false), m_reconnTimer(new QTimer(this))
 {
     connect(m_webSocket, &QWebSocket::connected, this, &WebSocketClient::onConnected);
