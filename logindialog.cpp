@@ -1,7 +1,6 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 #include "helper.h"
-
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QDebug>
@@ -51,9 +50,10 @@ LoginDialog::LoginDialog(QWidget *parent) :
         }
 
         QString username = ui->usernameLineEdit->text().trimmed();
-        qDebug() << "enter " << username;
-        qDebug() << QSslSocket::sslLibraryBuildVersionString();
-        WebSocketClient ws(QUrl("ws://127.0.0.1:8115"));
+
+        qDebug() << username;
+
+        WebSocketClient::getInstance();
     });
 }
 
