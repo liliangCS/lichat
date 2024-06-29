@@ -5,6 +5,8 @@
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QDebug>
+#include <QMessageBox>
+#include "websocketclient.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -35,8 +37,23 @@ LoginDialog::LoginDialog(QWidget *parent) :
 
     //enterBtn
     ui->enterBtn->setFixedWidth(100);
-    connect(ui->enterBtn, &QPushButton::clicked, this, [](){
-        qDebug() << "enterBtn";
+    connect(ui->enterBtn, &QPushButton::clicked, this, [this](){
+        if (ui->agreementCheckBox->checkState() == Qt::Unchecked)
+        {
+            QMessageBox::information(this, "提示", "请先阅读并同意《服务协议》");
+            return;
+        }
+
+        if (ui->usernameLineEdit->text().trimmed() == "")
+        {
+            QMessageBox::information(this, "提示", "用户名不能为空");
+            return;
+        }
+
+        QString username = ui->usernameLineEdit->text().trimmed();
+        qDebug() << "enter " << username;
+
+        WebSocketClient ws(QUrl("ws://127.0.0.1:8115"));
     });
 }
 

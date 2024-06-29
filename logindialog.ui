@@ -144,7 +144,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="usernameLineEdit"/>
            </item>
            <item>
             <widget class="QPushButton" name="enterBtn">
@@ -173,7 +173,7 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="agreementCheckBox">
            <property name="font">
             <font>
              <pointsize>10</pointsize>

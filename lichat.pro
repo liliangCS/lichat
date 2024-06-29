@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     helper.cpp \
     logindialog.cpp \
-    main.cpp
+    main.cpp \
+    websocketclient.cpp
 
 HEADERS += \
     helper.h \
-    logindialog.h
+    logindialog.h \
+    websocketclient.h
 
 FORMS += \
     logindialog.ui
