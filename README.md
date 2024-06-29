@@ -22,4 +22,4 @@ qt.network.ssl: QSslSocket: cannot resolve SSL_get_peer_certificate
 
 **解决方案：**
 
-代码中通过`qDebug() << QSslSocket::sslLibraryBuildVersionString();`可以获取Qt支持的OpenSSL版本，然后从[OpenSSL官网](https://www.openssl.org/source/old/index.html)下载对应版本进行编译。编译得到的动态库（libssl.so和libcrypto.so）加入到Qt库文件目录中即可。
+代码中通过`qDebug() << QSslSocket::sslLibraryBuildVersionString();`可以获取Qt支持的OpenSSL版本，然后从[OpenSSL官网](https://www.openssl.org/source/old/index.html)下载对应版本进行编译。编译得到的动态库（`libssl.so*`和`libcrypto.so*`）加入到Qt库文件目录中即可。
