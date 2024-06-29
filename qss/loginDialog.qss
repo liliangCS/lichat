@@ -1,5 +1,5 @@
 #loginFrame {
-    background-color: skyblue;
+    background-color: #efefef;
     border-radius: 3px;
 }
 

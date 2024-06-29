@@ -32,6 +32,12 @@ LoginDialog::LoginDialog(QWidget *parent) :
     QPixmap logoPixmap(":/images/logo.png");
     logoPixmap = logoPixmap.scaled(24, 24, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->logoLabel->setPixmap(logoPixmap);
+
+    //enterBtn
+    ui->enterBtn->setFixedWidth(100);
+    connect(ui->enterBtn, &QPushButton::clicked, this, [](){
+        qDebug() << "enterBtn";
+    });
 }
 
 LoginDialog::~LoginDialog()
