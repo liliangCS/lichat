@@ -4,8 +4,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QWebSocket>
-
-
+#include "chatroom.h"
 
 class WebSocketClient : public QObject
 {
@@ -18,6 +17,11 @@ public:
     //获取与服务器的连接状态
     bool getConnState();
 
+    //获取websocket连接
+    QWebSocket* getWebSocket();
+
+    //获取服务端url地址
+    QUrl& getUrl();
 private:
     static WebSocketClient *instance;
 

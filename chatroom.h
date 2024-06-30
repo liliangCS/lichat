@@ -2,11 +2,12 @@
 #define CHATROOM_H
 
 #include <QString>
-
+#include <QWebSocket>
 
 //消息类型
 enum MessageType {
     ENTER_ROOM_MSG,
+    ENTER_ROOM_MSG_FAILED,
     LEAVE_ROOM_MSG,
     PLAIN_TEXT_MSG,
     RICH_TEXT_MSG
@@ -18,15 +19,18 @@ public:
     ChatRoom(const ChatRoom &) = delete;
     ChatRoom& operator = (const ChatRoom &) = delete;
 
-    //发送聊天室消息
-    void send(MessageType msgType);
-    void send(MessageType msgType, QString &msg);
-    void send(MessageType msgType, QString &msg, QString& emojiStr);
+    void enterRoom(QString &username);
+    void leaveRoom(QString &username);
+
+    void updateMemberCount(int count);
 
     static ChatRoom* getInstance();
 private:
     static ChatRoom *instance;
-    ChatRoom();
+    QWebSocket *ws;
+    int m_memberCount;
+
+    ChatRoom(QWebSocket *ws);
 };
 
 #endif // CHATROOM_H

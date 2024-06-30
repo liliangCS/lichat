@@ -1,11 +1,13 @@
-#include "logindialog.h"
-#include "ui_logindialog.h"
-#include "helper.h"
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QDebug>
 #include <QMessageBox>
+
+#include "logindialog.h"
+#include "ui_logindialog.h"
+#include "helper.h"
 #include "websocketclient.h"
+#include "chatroom.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -55,7 +57,10 @@ LoginDialog::LoginDialog(QWidget *parent) :
         }
 
         QString username = ui->usernameLineEdit->text().trimmed();
-        qDebug() << username;
+
+        ChatRoom::getInstance()->enterRoom(username);
+
+        //qDebug() << username;
     });
 }
 
