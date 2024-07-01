@@ -9,8 +9,10 @@ HomeWidget::HomeWidget(QWidget *parent) :
     ui(new Ui::HomeWidget)
 {
     ui->setupUi(this);
-    setMinimumSize(600, 400);
     Helper::loadStyleSheet(this, ":/qss/homeWidget.qss");
+    setMinimumSize(600, 400);
+    ui->splitter->setStretchFactor(0, 1);
+    ui->splitter->setStretchFactor(1, 3);
     centerWindow();
 }
 

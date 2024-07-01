@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     //初始化WebSocketClient单例
     WebSocketClient *wsc = WebSocketClient::getInstance();
     //进入房间信号处理
-    QObject::connect(wsc, &WebSocketClient::enterRoom, [&ld, &hw, &a](){
+    QObject::connect(wsc, &WebSocketClient::enterRoom, [&ld, &hw](){
         ld.close();
         qDebug() << "enter room success";
         hw.show();
