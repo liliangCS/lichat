@@ -10,9 +10,11 @@ HomeWidget::HomeWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     Helper::loadStyleSheet(this, ":/qss/homeWidget.qss");
+    setWindowTitle("xxx聊天室");
     setMinimumSize(600, 400);
+    ui->leftWidget->setMaximumWidth(300);
     ui->splitter->setStretchFactor(0, 1);
-    ui->splitter->setStretchFactor(1, 3);
+    ui->splitter->setStretchFactor(1, 2);
     centerWindow();
 }
 

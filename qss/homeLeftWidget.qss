@@ -1,0 +1,11 @@
+QWidget {
+    background-color: #ecf5ff;
+}
+
+#roomMsgTextEdit {
+    background-color: #fff;
+}
+
+#leaveBtn {
+    background-color: pink;
+}

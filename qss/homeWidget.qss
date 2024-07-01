@@ -1,7 +1,3 @@
-#leftWidget {
-    background-color: skyblue;
-}
-
-#rightWidget {
-    background-color: yellow;
+#splitter::handle {
+    background-color: #313131;
 }

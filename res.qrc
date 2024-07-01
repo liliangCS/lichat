@@ -3,5 +3,7 @@
         <file>qss/loginDialog.qss</file>
         <file>images/logo.png</file>
         <file>qss/homeWidget.qss</file>
+        <file>qss/homeLeftWidget.qss</file>
+        <file>qss/homeRightWidget.qss</file>
     </qresource>
 </RCC>
