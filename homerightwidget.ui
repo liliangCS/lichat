@@ -6,39 +6,60 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>356</height>
+    <width>508</width>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="3,2">
+  <layout class="QVBoxLayout" name="verticalLayout_3" stretch="3,1">
    <property name="spacing">
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>10</number>
+    <number>0</number>
    </property>
    <item>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
+    <widget class="QWidget" name="widget_4" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QTextEdit" name="chatTextEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
     <widget class="QWidget" name="widget_3" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -61,26 +82,50 @@
           <number>0</number>
          </property>
          <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
           <number>10</number>
          </property>
-         <property name="rightMargin">
+         <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
          </property>
          <property name="bottomMargin">
-          <number>0</number>
+          <number>5</number>
          </property>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QPushButton" name="emojiBtn">
+           <property name="minimumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
-            <string>emoji</string>
+            <string/>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_2">
+          <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -96,7 +141,28 @@
        </widget>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit_2"/>
+       <widget class="QWidget" name="widget_5" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QTextEdit" name="inputTextEdit"/>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
@@ -105,19 +171,19 @@
           <number>0</number>
          </property>
          <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
           <number>10</number>
          </property>
-         <property name="rightMargin">
+         <property name="topMargin">
           <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
          </property>
          <property name="bottomMargin">
-          <number>0</number>
+          <number>10</number>
          </property>
          <item>
-          <spacer name="horizontalSpacer">
+          <spacer name="horizontalSpacer_2">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -130,7 +196,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="sendBtn">
            <property name="minimumSize">
             <size>
              <width>100</width>

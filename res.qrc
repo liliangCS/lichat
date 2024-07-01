@@ -5,5 +5,7 @@
         <file>qss/homeWidget.qss</file>
         <file>qss/homeLeftWidget.qss</file>
         <file>qss/homeRightWidget.qss</file>
+        <file>images/emoji.png</file>
+        <file>images/emoji_hover.png</file>
     </qresource>
 </RCC>
