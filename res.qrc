@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>qss/loginDialog.qss</file>
         <file>images/logo.png</file>
+        <file>qss/homeWidget.qss</file>
     </qresource>
 </RCC>

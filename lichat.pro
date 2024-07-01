@@ -18,6 +18,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     chatroom.cpp \
     helper.cpp \
+    homeleftwidget.cpp \
+    homerightwidget.cpp \
+    homewidget.cpp \
     logindialog.cpp \
     main.cpp \
     websocketclient.cpp
@@ -25,10 +28,16 @@ SOURCES += \
 HEADERS += \
     chatroom.h \
     helper.h \
+    homeleftwidget.h \
+    homerightwidget.h \
+    homewidget.h \
     logindialog.h \
     websocketclient.h
 
 FORMS += \
+    homeleftwidget.ui \
+    homerightwidget.ui \
+    homewidget.ui \
     logindialog.ui
 
 # Default rules for deployment.

@@ -32,6 +32,9 @@ private:
 
     explicit WebSocketClient(const QUrl &url, QObject *parent = nullptr);
 
+signals:
+    void enterRoom();
+
 private slots:
     void onConnected();
     void onTextMessageReceived(QString message);

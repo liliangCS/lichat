@@ -1,0 +1,7 @@
+#leftWidget {
+    background-color: skyblue;
+}
+
+#rightWidget {
+    background-color: yellow;
+}

@@ -1,4 +1,7 @@
 #include "websocketclient.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QMessageBox>
 
 WebSocketClient* WebSocketClient::instance = nullptr;
 
@@ -44,7 +47,46 @@ void WebSocketClient::onConnected()
 
 void WebSocketClient::onTextMessageReceived(QString message)
 {
-    qDebug() << message;
+    QJsonDocument msgDoc = QJsonDocument::fromJson(message.toUtf8());
+    QJsonObject msgObj = msgDoc.object();
+
+    MessageType msgType = static_cast<MessageType>(msgObj["type"].toInt());
+
+    if (msgType == MessageType::ENTER_ROOM_SUCCESS)
+    {
+        QString username = msgObj["username"].toString();
+        int userCount = msgObj["userCount"].toInt();
+
+        ChatRoom::getInstance()->updateUsername(username);
+        ChatRoom::getInstance()->updateMemberCount(userCount);
+
+        emit enterRoom();
+    }
+
+    else if (msgType == MessageType::ENTER_ROOM_FAILED)
+    {
+        QMessageBox::information(nullptr, "提示", "聊天室内存在同名用户，进入聊天室失败");
+    }
+
+    else if (msgType == MessageType::SOMEONE_ENTER_ROOM)
+    {
+        qDebug() << msgObj;
+    }
+
+    else if (msgType == MessageType::SOMEONE_LEAVE_ROOM)
+    {
+        qDebug() << msgObj;
+    }
+
+    else if (msgType == MessageType::SEND_TEXT)
+    {
+        qDebug() << msgObj;
+    }
+
+    else if (msgType == MessageType::SEND_RICH_TEXT)
+    {
+        qDebug() << msgObj;
+    }
 }
 
 void WebSocketClient::onDisconnected()
