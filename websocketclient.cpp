@@ -1,7 +1,6 @@
 #include "websocketclient.h"
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QMessageBox>
 
 WebSocketClient* WebSocketClient::instance = nullptr;
 
@@ -13,7 +12,7 @@ WebSocketClient* WebSocketClient::getInstance()
     return instance;
 }
 
-bool WebSocketClient::getConnState()
+ConnState WebSocketClient::getConnState()
 {
     return m_connState;
 }
@@ -28,7 +27,12 @@ QUrl &WebSocketClient::getUrl()
     return m_url;
 }
 
-WebSocketClient::WebSocketClient(const QUrl &url, QObject *parent) : QObject(parent), m_webSocket(new QWebSocket()), m_url(url), m_connState(false), m_reconnTimer(new QTimer(this))
+void WebSocketClient::closeConn()
+{
+    m_webSocket->close();
+}
+
+WebSocketClient::WebSocketClient(const QUrl &url, QObject *parent) : QObject(parent), m_webSocket(new QWebSocket()), m_url(url), m_connState(ConnState::DISCONNECTED), m_reconnTimer(new QTimer(this))
 {
     connect(m_webSocket, &QWebSocket::connected, this, &WebSocketClient::onConnected);
     connect(m_webSocket, &QWebSocket::textMessageReceived, this, &WebSocketClient::onTextMessageReceived);
@@ -41,7 +45,8 @@ WebSocketClient::WebSocketClient(const QUrl &url, QObject *parent) : QObject(par
 void WebSocketClient::onConnected()
 {
     qDebug() << "WebSocket connected";
-    m_connState = true;
+    m_connState = ConnState::CONNECTED;
+    emit connStateChange(m_connState);
     m_reconnTimer->stop();
 }
 
@@ -55,27 +60,29 @@ void WebSocketClient::onTextMessageReceived(QString message)
     if (msgType == MessageType::ENTER_ROOM_SUCCESS)
     {
         QString username = msgObj["username"].toString();
-        int userCount = msgObj["userCount"].toInt();
 
-        ChatRoom::getInstance()->updateUsername(username);
-        ChatRoom::getInstance()->updateMemberCount(userCount);
-
-        emit enterRoom();
+        emit enterRoomSuccess(username);
     }
 
     else if (msgType == MessageType::ENTER_ROOM_FAILED)
     {
-        QMessageBox::information(nullptr, "提示", "聊天室内存在同名用户，进入聊天室失败");
+        emit enterRoomFailed();
     }
 
     else if (msgType == MessageType::SOMEONE_ENTER_ROOM)
     {
-        qDebug() << msgObj;
+        QString username = msgObj["username"].toString();
+        int userCount = msgObj["userCount"].toInt();
+
+        emit someoneEnterRoom(username, userCount);
     }
 
     else if (msgType == MessageType::SOMEONE_LEAVE_ROOM)
     {
-        qDebug() << msgObj;
+        QString username = msgObj["username"].toString();
+        int userCount = msgObj["userCount"].toInt();
+
+        emit someoneLeaveRoom(username, userCount);
     }
 
     else if (msgType == MessageType::SEND_TEXT)
@@ -92,13 +99,14 @@ void WebSocketClient::onTextMessageReceived(QString message)
 void WebSocketClient::onDisconnected()
 {
     qDebug() << "WebSocket disconnected";
-    m_connState = false;
+    m_connState = ConnState::DISCONNECTED;
+    emit connStateChange(m_connState);
     m_reconnTimer->start(5000);
 }
 
 void WebSocketClient::onTimeoutReconnect()
 {
-    if (!m_connState)
+    if (m_connState == ConnState::DISCONNECTED)
     {
         qDebug() << "try to reconnect...";
         m_webSocket->abort();

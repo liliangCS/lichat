@@ -3,6 +3,7 @@
 #include <QDesktopWidget>
 #include <QMouseEvent>
 #include "helper.h"
+#include "chatroom.h"
 
 HomeWidget::HomeWidget(QWidget *parent) :
     QWidget(parent),
@@ -10,7 +11,7 @@ HomeWidget::HomeWidget(QWidget *parent) :
 {
     ui->setupUi(this);
     Helper::loadStyleSheet(this, ":/qss/homeWidget.qss");
-    setWindowTitle("xxx聊天室");
+    setWindowTitle("世界之窗聊天室");
     setMinimumSize(600, 400);
     ui->leftWidget->setMaximumWidth(300);
     ui->splitter->setStretchFactor(0, 1);
@@ -21,6 +22,21 @@ HomeWidget::HomeWidget(QWidget *parent) :
 HomeWidget::~HomeWidget()
 {
     delete ui;
+}
+
+void HomeWidget::updateUIUsername(QString &username)
+{
+    ui->leftWidget->updateUIUsername(username);
+}
+
+void HomeWidget::updateUIUserCount(int userCount)
+{
+    ui->leftWidget->updateUIUserCount(userCount);
+}
+
+void HomeWidget::updateUIConnState(ConnState &state)
+{
+    ui->leftWidget->updateUIConnState(state);
 }
 
 void HomeWidget::centerWindow()

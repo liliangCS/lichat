@@ -1,6 +1,7 @@
 #ifndef CHATROOM_H
 #define CHATROOM_H
 
+#include <QObject>
 #include <QString>
 #include <QWebSocket>
 
@@ -14,26 +15,40 @@ enum MessageType {
     SEND_RICH_TEXT
 };
 
-class ChatRoom
+class ChatRoom : public QObject
 {
+    Q_OBJECT
 public:
     ChatRoom(const ChatRoom &) = delete;
     ChatRoom& operator = (const ChatRoom &) = delete;
 
-    void enterRoom(QString &username);
-    void leaveRoom(QString &username);
-
-    void updateMemberCount(int count);
-    void updateUsername(QString &username);
-
     static ChatRoom* getInstance();
+
+    void enterRoom(QString &username);
+    void leaveRoom();
+
+    int getUserCount();
+    void setUserCount(int count);
+
+    QString& getUsername();
+    void setUsername(QString &username);
+
+
 private:
     static ChatRoom *instance;
     QWebSocket *ws;
-    int m_memberCount;
+    int m_userCount;
     QString m_username;
 
-    ChatRoom(QWebSocket *ws);
+    explicit ChatRoom(QWebSocket *ws, QObject *parent = nullptr);
+
+public slots:
+    void onEnterRoomSuccess(QString &username);
+    void onEnterRoomFailed();
+    void onSomeoneEnterRoom(QString &username, int userCount);
+    void onSomeoneLeaveRoom(QString &username, int userCount);
+    void onSendText();
+    void onSendRichText();
 };
 
 #endif // CHATROOM_H

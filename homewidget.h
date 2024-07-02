@@ -2,6 +2,7 @@
 #define HOMEWIDGET_H
 
 #include <QWidget>
+#include "websocketclient.h"
 
 namespace Ui {
 class HomeWidget;
@@ -14,6 +15,10 @@ class HomeWidget : public QWidget
 public:
     explicit HomeWidget(QWidget *parent = nullptr);
     ~HomeWidget();
+
+    void updateUIUsername(QString &username);
+    void updateUIUserCount(int userCount);
+    void updateUIConnState(ConnState &state);
 
 private:
     Ui::HomeWidget *ui;

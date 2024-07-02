@@ -3,6 +3,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <functional>
+#include <QMessageBox>
 
 ChatRoom* ChatRoom::instance = nullptr;
 
@@ -17,24 +18,34 @@ void ChatRoom::enterRoom(QString &username)
     ws->sendTextMessage(messageStr);
 }
 
-void ChatRoom::leaveRoom(QString &username)
+void ChatRoom::leaveRoom()
 {
     QJsonObject messageObj;
     messageObj["type"] = MessageType::SOMEONE_LEAVE_ROOM;
-    messageObj["sender"] = username;
+    messageObj["sender"] = m_username;
     QJsonDocument messageDoc(messageObj);
     QString messageStr = messageDoc.toJson(QJsonDocument::Compact);
     ws->sendTextMessage(messageStr);
 }
 
-void ChatRoom::updateMemberCount(int count)
+int ChatRoom::getUserCount()
 {
-    m_memberCount = count;
+    return m_userCount;
 }
 
-void ChatRoom::updateUsername(QString &username)
+void ChatRoom::setUserCount(int count)
+{
+    m_userCount = count;
+}
+
+void ChatRoom::setUsername(QString &username)
 {
     m_username = username;
+}
+
+QString& ChatRoom::getUsername()
+{
+    return m_username;
 }
 
 ChatRoom *ChatRoom::getInstance()
@@ -46,6 +57,40 @@ ChatRoom *ChatRoom::getInstance()
     return instance;
 }
 
-ChatRoom::ChatRoom(QWebSocket *ws): ws(ws), m_memberCount()
+ChatRoom::ChatRoom(QWebSocket *ws, QObject *parent): QObject(parent),  ws(ws), m_userCount(0)
 {
+}
+
+void ChatRoom::onEnterRoomSuccess(QString &username)
+{
+    qDebug() << "enter room success";
+    setUsername(username);
+}
+
+void ChatRoom::onEnterRoomFailed()
+{
+    qDebug() << "enter room failed";
+    QMessageBox::information(nullptr, "提示", "聊天室内存在同名用户，进入聊天室失败");
+}
+
+void ChatRoom::onSomeoneEnterRoom(QString &username, int userCount)
+{
+    setUserCount(userCount);
+    qDebug() << username << " enter room; " << "room user count is " << userCount;
+}
+
+void ChatRoom::onSomeoneLeaveRoom(QString &username, int userCount)
+{
+    setUserCount(userCount);
+    qDebug() << username << " leave room; " << "room user count is " << userCount;
+}
+
+void ChatRoom::onSendText()
+{
+    qDebug() << "send text";
+}
+
+void ChatRoom::onSendRichText()
+{
+    qDebug() << "send rich text";
 }

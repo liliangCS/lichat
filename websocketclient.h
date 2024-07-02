@@ -6,6 +6,11 @@
 #include <QWebSocket>
 #include "chatroom.h"
 
+enum ConnState {
+    CONNECTED,
+    DISCONNECTED
+};
+
 class WebSocketClient : public QObject
 {
     Q_OBJECT
@@ -15,25 +20,34 @@ public:
 
     static WebSocketClient* getInstance();
     //获取与服务器的连接状态
-    bool getConnState();
+    ConnState getConnState();
 
     //获取websocket连接
     QWebSocket* getWebSocket();
 
     //获取服务端url地址
     QUrl& getUrl();
+
+    //关闭websocket连接
+    void closeConn();
 private:
     static WebSocketClient *instance;
 
     QWebSocket *m_webSocket;
     QUrl m_url;
-    bool m_connState;
+    ConnState m_connState;
     QTimer *m_reconnTimer;
 
     explicit WebSocketClient(const QUrl &url, QObject *parent = nullptr);
 
 signals:
-    void enterRoom();
+    void enterRoomSuccess(QString &username);
+    void enterRoomFailed();
+    void someoneEnterRoom(QString &username, int userCount);
+    void someoneLeaveRoom(QString &username, int userCount);
+    void sendText();
+    void sendRichText();
+    void connStateChange(ConnState &state);
 
 private slots:
     void onConnected();

@@ -51,7 +51,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
             return;
         }
 
-        if (!WebSocketClient::getInstance()->getConnState()) {
+        if (WebSocketClient::getInstance()->getConnState() == ConnState::DISCONNECTED) {
             QMessageBox::information(this, "提示", "与服务器的连接断开，请检查服务器环境");
             return;
         }
@@ -59,8 +59,6 @@ LoginDialog::LoginDialog(QWidget *parent) :
         QString username = ui->usernameLineEdit->text().trimmed();
 
         ChatRoom::getInstance()->enterRoom(username);
-
-        //qDebug() << username;
     });
 }
 
