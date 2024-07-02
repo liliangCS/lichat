@@ -19,9 +19,19 @@ public:
     void updateUIUsername(QString &username);
     void updateUIUserCount(int userCount);
     void updateUIConnState(ConnState &state);
+    void updateUIRoomIOMsg(QString &msg);
+
+    void addRoomIOMessage(QString &msg);
+    void clearRoomIOMessageList();
+    QStringList* getRoomIOMessageList();
 
 private:
     Ui::HomeLeftWidget *ui;
+
+    QStringList *m_roomIOMessageList;
+
+signals:
+    void newRoomIOMessage(QString &msg);
 };
 
 #endif // HOMELEFTWIDGET_H

@@ -43,8 +43,8 @@ private:
 signals:
     void enterRoomSuccess(QString &username);
     void enterRoomFailed();
-    void someoneEnterRoom(QString &username, int userCount);
-    void someoneLeaveRoom(QString &username, int userCount);
+    void someoneEnterRoom(QString &username, int userCount, QString &timeStr);
+    void someoneLeaveRoom(QString &username, int userCount, QString &timeStr);
     void sendText();
     void sendRichText();
     void connStateChange(ConnState &state);

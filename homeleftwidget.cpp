@@ -2,10 +2,11 @@
 #include "ui_homeleftwidget.h"
 #include "helper.h"
 #include "chatroom.h"
+#include <QDebug>
 
 HomeLeftWidget::HomeLeftWidget(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::HomeLeftWidget)
+    ui(new Ui::HomeLeftWidget), m_roomIOMessageList(new QStringList())
 {
     ui->setupUi(this);
     Helper::loadStyleSheet(this, ":/qss/homeLeftWidget.qss");
@@ -13,6 +14,11 @@ HomeLeftWidget::HomeLeftWidget(QWidget *parent) :
     //leaveBtn
     connect(ui->leaveBtn, &QPushButton::clicked, [](){
         ChatRoom::getInstance()->leaveRoom();
+    });
+
+    connect(this, &HomeLeftWidget::newRoomIOMessage, [&](QString &msg){
+        qDebug() << msg;
+        updateUIRoomIOMsg(msg);
     });
 }
 
@@ -40,4 +46,25 @@ void HomeLeftWidget::updateUIConnState(ConnState &state)
     {
         ui->connStateLabel->setText("连接断开，重连中...");
     }
+}
+
+void HomeLeftWidget::updateUIRoomIOMsg(QString &msg)
+{
+    ui->roomIOMsgTextEdit->append(msg);
+}
+
+void HomeLeftWidget::addRoomIOMessage(QString &msg)
+{
+    m_roomIOMessageList->append(msg);
+    emit newRoomIOMessage(msg);
+}
+
+void HomeLeftWidget::clearRoomIOMessageList()
+{
+    m_roomIOMessageList->clear();
+}
+
+QStringList *HomeLeftWidget::getRoomIOMessageList()
+{
+    return m_roomIOMessageList;
 }

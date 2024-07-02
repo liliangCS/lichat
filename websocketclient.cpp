@@ -73,16 +73,18 @@ void WebSocketClient::onTextMessageReceived(QString message)
     {
         QString username = msgObj["username"].toString();
         int userCount = msgObj["userCount"].toInt();
+        QString timeStr = msgObj["timeStr"].toString();
 
-        emit someoneEnterRoom(username, userCount);
+        emit someoneEnterRoom(username, userCount, timeStr);
     }
 
     else if (msgType == MessageType::SOMEONE_LEAVE_ROOM)
     {
         QString username = msgObj["username"].toString();
         int userCount = msgObj["userCount"].toInt();
+        QString timeStr = msgObj["timeStr"].toString();
 
-        emit someoneLeaveRoom(username, userCount);
+        emit someoneLeaveRoom(username, userCount, timeStr);
     }
 
     else if (msgType == MessageType::SEND_TEXT)

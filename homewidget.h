@@ -16,9 +16,12 @@ public:
     explicit HomeWidget(QWidget *parent = nullptr);
     ~HomeWidget();
 
+    // homeLeftWidget
     void updateUIUsername(QString &username);
     void updateUIUserCount(int userCount);
     void updateUIConnState(ConnState &state);
+
+    void addRoomIOMessage(QString &msg);
 
 private:
     Ui::HomeWidget *ui;

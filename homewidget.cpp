@@ -39,6 +39,11 @@ void HomeWidget::updateUIConnState(ConnState &state)
     ui->leftWidget->updateUIConnState(state);
 }
 
+void HomeWidget::addRoomIOMessage(QString &msg)
+{
+    ui->leftWidget->addRoomIOMessage(msg);
+}
+
 void HomeWidget::centerWindow()
 {
     QDesktopWidget *desktop = QApplication::desktop();

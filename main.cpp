@@ -29,18 +29,33 @@ int main(int argc, char *argv[])
         cr->onEnterRoomFailed();
     });
     //某人进入聊天室
-    QObject::connect(wsc, &WebSocketClient::someoneEnterRoom, [&](QString &username, int userCount){
+    QObject::connect(wsc, &WebSocketClient::someoneEnterRoom, [&](QString &username, int userCount, QString &timeStr){
+        qDebug() << "进入聊天室 " << timeStr;
         cr->onSomeoneEnterRoom(username, userCount);
         hw.updateUIUserCount(userCount);
+        QString roomIoMsg;
+
+        if (username == cr->getUsername())
+        {
+            roomIoMsg = timeStr + ": 你已进入聊天室";
+        }
+        else
+        {
+            roomIoMsg = timeStr + ": " + username + "进入聊天室";
+        }
+        hw.addRoomIOMessage(roomIoMsg);
     });
     //某人离开聊天室
-    QObject::connect(wsc, &WebSocketClient::someoneLeaveRoom, [&](QString &username, int userCount){
+    QObject::connect(wsc, &WebSocketClient::someoneLeaveRoom, [&](QString &username, int userCount, QString &timeStr){
+        qDebug() << "离开聊天室 " << timeStr;
         if (username == cr->getUsername()) {
             hw.close();
             ld.show();
         }
         cr->onSomeoneLeaveRoom(username, userCount);
         hw.updateUIUserCount(userCount);
+        QString roomIoMsg = timeStr + ": " + username + "离开聊天室";
+        hw.addRoomIOMessage(roomIoMsg);
     });
     //与服务器连接状态改变
     QObject::connect(wsc, &WebSocketClient::connStateChange, [&](ConnState &state){
@@ -54,8 +69,6 @@ int main(int argc, char *argv[])
     QObject::connect(wsc, &WebSocketClient::sendRichText, [&](){
         cr->onSendRichText();
     });
-
-
 
     return a.exec();
 }
