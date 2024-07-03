@@ -1,8 +1,8 @@
-#include "homeleftwidget.h"
 #include "ui_homeleftwidget.h"
-#include "helper.h"
-#include "chatroom.h"
 #include <QDebug>
+#include "include/helper.h"
+#include "include/chatroom.h"
+#include "include/homeleftwidget.h"
 
 HomeLeftWidget::HomeLeftWidget(QWidget *parent) :
     QWidget(parent),

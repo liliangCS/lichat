@@ -1,9 +1,9 @@
-#include "homewidget.h"
 #include "ui_homewidget.h"
 #include <QDesktopWidget>
 #include <QMouseEvent>
-#include "helper.h"
-#include "chatroom.h"
+#include "include/helper.h"
+#include "include/chatroom.h"
+#include "include/homewidget.h"
 
 HomeWidget::HomeWidget(QWidget *parent) :
     QWidget(parent),

@@ -3,11 +3,11 @@
 #include <QDebug>
 #include <QMessageBox>
 
-#include "logindialog.h"
+#include "include/logindialog.h"
 #include "ui_logindialog.h"
-#include "helper.h"
-#include "websocketclient.h"
-#include "chatroom.h"
+#include "include/helper.h"
+#include "include/websocketclient.h"
+#include "include/chatroom.h"
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),

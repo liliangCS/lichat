@@ -1,7 +1,7 @@
-#include "homerightwidget.h"
 #include "ui_homerightwidget.h"
-#include "helper.h"
-#include "chatroom.h"
+#include "include/helper.h"
+#include "include/chatroom.h"
+#include "include/homerightwidget.h"
 
 HomeRightWidget::HomeRightWidget(QWidget *parent) :
     QWidget(parent),

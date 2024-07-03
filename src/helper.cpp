@@ -1,7 +1,6 @@
-#include "helper.h"
-
 #include <QFile>
 #include <QDebug>
+#include "include/helper.h"
 
 Helper::Helper()
 {

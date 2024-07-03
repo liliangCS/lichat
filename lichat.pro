@@ -16,29 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    chatroom.cpp \
-    helper.cpp \
-    homeleftwidget.cpp \
-    homerightwidget.cpp \
-    homewidget.cpp \
-    logindialog.cpp \
+    src/chatroom.cpp \
+    src/helper.cpp \
+    src/homeleftwidget.cpp \
+    src/homerightwidget.cpp \
+    src/homewidget.cpp \
+    src/logindialog.cpp \
     main.cpp \
-    websocketclient.cpp
+    src/websocketclient.cpp
 
 HEADERS += \
-    chatroom.h \
-    helper.h \
-    homeleftwidget.h \
-    homerightwidget.h \
-    homewidget.h \
-    logindialog.h \
-    websocketclient.h
+    include/chatroom.h \
+    include/helper.h \
+    include/homeleftwidget.h \
+    include/homerightwidget.h \
+    include/homewidget.h \
+    include/logindialog.h \
+    include/websocketclient.h
 
 FORMS += \
-    homeleftwidget.ui \
-    homerightwidget.ui \
-    homewidget.ui \
-    logindialog.ui
+    ui/homeleftwidget.ui \
+    ui/homerightwidget.ui \
+    ui/homewidget.ui \
+    ui/logindialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

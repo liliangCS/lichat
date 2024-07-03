@@ -53,13 +53,13 @@
   <customwidget>
    <class>HomeLeftWidget</class>
    <extends>QWidget</extends>
-   <header>homeleftwidget.h</header>
+   <header>include/homeleftwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>HomeRightWidget</class>
    <extends>QWidget</extends>
-   <header>homerightwidget.h</header>
+   <header>include/homerightwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
