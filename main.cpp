@@ -1,14 +1,14 @@
-#include "logindialog.h"
 #include <QApplication>
-#include "websocketclient.h"
-#include "chatroom.h"
-#include "homewidget.h"
 #include <QDesktopWidget>
+#include "include/websocketclient.h"
+#include "include/chatroom.h"
+#include "include/homewidget.h"
+#include "include/logindialog.h"
+#include "include/helper.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     HomeWidget hw;
     LoginDialog ld;
     ld.show();

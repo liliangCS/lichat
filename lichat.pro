@@ -2,7 +2,17 @@ QT       += core gui websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++11 \
+#          debug \
+          release
+
+#debug: {
+#    QMAKE_POST_LINK += $$quote(cp $$PWD/lichat.config.ini $$OUT_PWD/lichat.config.ini)
+#}
+
+release: {
+    QMAKE_POST_LINK += $$quote(cp $$PWD/lichat.config.ini $$OUT_PWD/lichat.config.ini)
+}
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -47,3 +57,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+DISTFILES += \
+    lichat.config.ini
+
+RC_ICONS = images/logo.ico

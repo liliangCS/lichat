@@ -7,5 +7,7 @@
         <file>qss/homeRightWidget.qss</file>
         <file>images/emoji.png</file>
         <file>images/emoji_hover.png</file>
+        <file>images/logo.ico</file>
+        <file>images/chat_bg.jpg</file>
     </qresource>
 </RCC>

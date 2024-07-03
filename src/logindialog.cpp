@@ -15,6 +15,7 @@ LoginDialog::LoginDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint);
+    setWindowIcon(QIcon(":/images/logo.ico"));
     setAttribute(Qt::WA_TranslucentBackground);
     Helper::loadStyleSheet(this, ":/qss/loginDialog.qss");
 

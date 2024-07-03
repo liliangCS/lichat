@@ -1,13 +1,17 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "include/websocketclient.h"
+#include "include/helper.h"
 
 WebSocketClient* WebSocketClient::instance = nullptr;
 
 WebSocketClient* WebSocketClient::getInstance()
 {
     if (instance == nullptr) {
-        instance = new WebSocketClient(QUrl("ws://127.0.0.1:8115"));
+        IniConfig config = Helper::loadIniConfig();
+        QString url = QString("ws://%1:%2").arg(config.server_ip).arg(config.server_port);
+        qDebug() << url;
+        instance = new WebSocketClient(QUrl(url));
     }
     return instance;
 }

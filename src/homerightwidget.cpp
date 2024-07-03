@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include "ui_homerightwidget.h"
 #include "include/helper.h"
 #include "include/chatroom.h"
@@ -13,9 +14,15 @@ HomeRightWidget::HomeRightWidget(QWidget *parent) :
     //sendBtn
     connect(ui->sendBtn, &QPushButton::clicked, [this](){
         QString contentStr = ui->inputTextEdit->document()->toRawText();
+        if (contentStr.trimmed() == "") {
+            QMessageBox::information(this, "提示", "不允许输入空白字符");
+            return;
+        }
         ChatRoom::getInstance()->sendPlainTextMsg(contentStr);
         ui->inputTextEdit->clear();
     });
+
+    //emojiBtn
 }
 
 HomeRightWidget::~HomeRightWidget()

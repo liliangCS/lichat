@@ -1,8 +1,13 @@
-QWidget {
+#topWidget,#bottomWidget {
     background-color: #f0f9eb;
 }
 
-QTextEdit {
+#chatTextEdit {
+    background-color: #fff;
+/*    border-image: url(:/images/chat_bg.jpg);*/
+}
+
+#inputTextEdit {
     background-color: #fff;
 }
 
@@ -14,7 +19,6 @@ QTextEdit {
 #emojiBtn:hover {
     border-image: url(:/images/emoji_hover.png)
 }
-
 
 #sendBtn {
     background: pink;
