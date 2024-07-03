@@ -5,10 +5,17 @@
 #include "include/homewidget.h"
 #include "include/logindialog.h"
 #include "include/helper.h"
+#include "include/emojipickerdialog.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    //test
+    EmojiPickerDialog* emojiPicker = new EmojiPickerDialog();
+    emojiPicker->show();
+
+
     HomeWidget hw;
     LoginDialog ld;
     ld.show();
