@@ -62,6 +62,7 @@ void HomeLeftWidget::addRoomIOMessage(QString &msg)
 void HomeLeftWidget::clearRoomIOMessageList()
 {
     m_roomIOMessageList->clear();
+    ui->roomIOMsgTextEdit->clear();
 }
 
 QStringList *HomeLeftWidget::getRoomIOMessageList()

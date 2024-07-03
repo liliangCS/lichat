@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     //进入聊天室成功
     QObject::connect(wsc, &WebSocketClient::enterRoomSuccess, [&](QString &username){
         ld.close();
+        hw.clearRoomIOMessageList();
         hw.show();
         cr->onEnterRoomSuccess(username);
         hw.updateUIUsername(username);

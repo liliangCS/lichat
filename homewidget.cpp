@@ -44,6 +44,11 @@ void HomeWidget::addRoomIOMessage(QString &msg)
     ui->leftWidget->addRoomIOMessage(msg);
 }
 
+void HomeWidget::clearRoomIOMessageList()
+{
+    ui->leftWidget->clearRoomIOMessageList();
+}
+
 void HomeWidget::centerWindow()
 {
     QDesktopWidget *desktop = QApplication::desktop();

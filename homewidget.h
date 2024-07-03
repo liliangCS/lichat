@@ -22,6 +22,7 @@ public:
     void updateUIConnState(ConnState &state);
 
     void addRoomIOMessage(QString &msg);
+    void clearRoomIOMessageList();
 
 private:
     Ui::HomeWidget *ui;
