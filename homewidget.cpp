@@ -49,6 +49,16 @@ void HomeWidget::clearRoomIOMessageList()
     ui->leftWidget->clearRoomIOMessageList();
 }
 
+void HomeWidget::updateUIChatMsg(QString &sender, QString &contentStr, QString &timeStr)
+{
+    ui->rightWidget->updateUIChatMsg(sender, contentStr, timeStr);
+}
+
+void HomeWidget::clearRoomChatMsg()
+{
+    ui->rightWidget->clearRoomChatMsg();
+}
+
 void HomeWidget::centerWindow()
 {
     QDesktopWidget *desktop = QApplication::desktop();

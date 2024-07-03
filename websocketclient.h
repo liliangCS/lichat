@@ -45,7 +45,7 @@ signals:
     void enterRoomFailed();
     void someoneEnterRoom(QString &username, int userCount, QString &timeStr);
     void someoneLeaveRoom(QString &username, int userCount, QString &timeStr);
-    void sendText();
+    void sendPlainText(QString &sender, QString &contentStr, QString &timeStr);
     void sendRichText();
     void connStateChange(ConnState &state);
 

@@ -43,6 +43,17 @@ void ChatRoom::setUsername(QString &username)
     m_username = username;
 }
 
+void ChatRoom::sendPlainTextMsg(QString &contentStr)
+{
+    QJsonObject messageObj;
+    messageObj["type"] = MessageType::SEND_PLAIN_TEXT;
+    messageObj["sender"] = m_username;
+    messageObj["contentStr"] = contentStr;
+    QJsonDocument messageDoc(messageObj);
+    QString messageStr = messageDoc.toJson(QJsonDocument::Compact);
+    ws->sendTextMessage(messageStr);
+}
+
 QString& ChatRoom::getUsername()
 {
     return m_username;
@@ -85,9 +96,11 @@ void ChatRoom::onSomeoneLeaveRoom(QString &username, int userCount)
     qDebug() << username << " leave room; " << "room user count is " << userCount;
 }
 
-void ChatRoom::onSendText()
+void ChatRoom::onSendPlainText(QString &sender, QString &contentStr, QString &timeStr)
 {
-    qDebug() << "send text";
+    qDebug() << "timeStr: " << timeStr;
+    qDebug() << "sender: " << sender;
+    qDebug() << "contentStr: " << contentStr;
 }
 
 void ChatRoom::onSendRichText()

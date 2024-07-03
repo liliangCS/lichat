@@ -11,7 +11,7 @@ enum MessageType {
     ENTER_ROOM_FAILED,
     SOMEONE_ENTER_ROOM,
     SOMEONE_LEAVE_ROOM,
-    SEND_TEXT,
+    SEND_PLAIN_TEXT,
     SEND_RICH_TEXT
 };
 
@@ -33,6 +33,8 @@ public:
     QString& getUsername();
     void setUsername(QString &username);
 
+    void sendPlainTextMsg(QString &contentStr);
+
 
 private:
     static ChatRoom *instance;
@@ -47,7 +49,7 @@ public slots:
     void onEnterRoomFailed();
     void onSomeoneEnterRoom(QString &username, int userCount);
     void onSomeoneLeaveRoom(QString &username, int userCount);
-    void onSendText();
+    void onSendPlainText(QString &sender, QString &contentStr, QString &timeStr);
     void onSendRichText();
 };
 

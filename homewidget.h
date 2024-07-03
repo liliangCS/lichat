@@ -24,6 +24,10 @@ public:
     void addRoomIOMessage(QString &msg);
     void clearRoomIOMessageList();
 
+    // homeRightWidget
+    void updateUIChatMsg(QString &sender, QString &contentStr, QString &timeStr);
+    void clearRoomChatMsg();
+
 private:
     Ui::HomeWidget *ui;
 

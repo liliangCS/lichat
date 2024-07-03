@@ -15,6 +15,9 @@ public:
     explicit HomeRightWidget(QWidget *parent = nullptr);
     ~HomeRightWidget();
 
+    void updateUIChatMsg(QString &sender, QString &contentStr, QString &timeStr);
+    void clearRoomChatMsg();
+
 private:
     Ui::HomeRightWidget *ui;
 };

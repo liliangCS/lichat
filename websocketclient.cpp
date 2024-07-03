@@ -87,9 +87,13 @@ void WebSocketClient::onTextMessageReceived(QString message)
         emit someoneLeaveRoom(username, userCount, timeStr);
     }
 
-    else if (msgType == MessageType::SEND_TEXT)
+    else if (msgType == MessageType::SEND_PLAIN_TEXT)
     {
-        qDebug() << msgObj;
+        QString sender = msgObj["sender"].toString();
+        QString contentStr = msgObj["contentStr"].toString();
+        QString timeStr = msgObj["timeStr"].toString();
+
+        emit sendPlainText(sender, contentStr, timeStr);
     }
 
     else if (msgType == MessageType::SEND_RICH_TEXT)

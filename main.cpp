@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
     QObject::connect(wsc, &WebSocketClient::enterRoomSuccess, [&](QString &username){
         ld.close();
         hw.clearRoomIOMessageList();
+        hw.clearRoomChatMsg();
         hw.show();
         cr->onEnterRoomSuccess(username);
         hw.updateUIUsername(username);
@@ -63,8 +64,13 @@ int main(int argc, char *argv[])
         hw.updateUIConnState(state);
     });
 
-    QObject::connect(wsc, &WebSocketClient::sendText, [&](){
-        cr->onSendText();
+    QObject::connect(wsc, &WebSocketClient::sendPlainText, [&](QString &sender, QString &contentStr, QString &timeStr){
+        QString unameShowStr = sender;
+        if (sender == cr->getUsername()) {
+            unameShowStr = "你";
+        }
+        cr->onSendPlainText(unameShowStr, contentStr, timeStr);
+        hw.updateUIChatMsg(unameShowStr, contentStr, timeStr);
     });
 
     QObject::connect(wsc, &WebSocketClient::sendRichText, [&](){
