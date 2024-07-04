@@ -17,7 +17,7 @@ QScrollBar:vertical {
     border: none;
     background: #f0f0f0;
     width: 4px;
-    margin: 0px 0px 0px 0px;
+    margin: 0px;
 }
 
 QScrollBar::handle:vertical {
