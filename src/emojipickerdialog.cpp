@@ -2,8 +2,12 @@
 #include <QDebug>
 #include <qpushbutton.h>
 #include <QMessageBox>
-#include "include/emojipickerdialog.h"
 #include "ui_emojipickerdialog.h"
+#include "include/emojipickerdialog.h"
+#include "include/helper.h"
+
+
+EmojiPickerDialog* EmojiPickerDialog::instance = nullptr;
 
 EmojiPickerDialog::EmojiPickerDialog(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +16,7 @@ EmojiPickerDialog::EmojiPickerDialog(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlag(Qt::FramelessWindowHint);
     setFixedSize(300, 150);
+    Helper::loadStyleSheet(this, ":/qss/emojiPickerDialog.qss");
     initEmojiPaths();
     initEmojiGrid();
 }
@@ -19,6 +24,24 @@ EmojiPickerDialog::EmojiPickerDialog(QWidget *parent) :
 EmojiPickerDialog::~EmojiPickerDialog()
 {
     delete ui;
+}
+
+void EmojiPickerDialog::leaveEvent(QEvent *event)
+{
+    if (this->isVisible())
+    {
+        this->close();
+    }
+    QDialog::leaveEvent(event);
+}
+
+EmojiPickerDialog *EmojiPickerDialog::getInstance()
+{
+    if (instance == nullptr)
+    {
+        instance = new EmojiPickerDialog();
+    }
+    return instance;
 }
 
 void EmojiPickerDialog::initEmojiPaths()
@@ -51,13 +74,7 @@ void EmojiPickerDialog::addEmojiButton(QGridLayout *layout, int row, int col, co
     button->setIcon(QIcon(iconPath));
     button->setIconSize(QSize(20, 20)); //设置表情图标大小
     connect(button, &QPushButton::clicked, this, [this, index](){
-        onEmojiClicked(index);
+        emit emojiClicked(index);
     });
     layout->addWidget(button, row, col);
-}
-
-void EmojiPickerDialog::onEmojiClicked(int index)
-{
-    qDebug() << index;
-    this->close();
 }

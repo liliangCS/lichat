@@ -54,6 +54,18 @@ void ChatRoom::sendPlainTextMsg(QString &contentStr)
     ws->sendTextMessage(messageStr);
 }
 
+void ChatRoom::sendRichTextMsg(QString &contentStr, QString &emojiStr)
+{
+    QJsonObject messageObj;
+    messageObj["type"] = MessageType::SEND_RICH_TEXT;
+    messageObj["sender"] = m_username;
+    messageObj["contentStr"] = contentStr;
+    messageObj["emojiStr"] = emojiStr;
+    QJsonDocument messageDoc(messageObj);
+    QString messageStr = messageDoc.toJson(QJsonDocument::Compact);
+    ws->sendTextMessage(messageStr);
+}
+
 QString& ChatRoom::getUsername()
 {
     return m_username;
@@ -98,12 +110,19 @@ void ChatRoom::onSomeoneLeaveRoom(QString &username, int userCount)
 
 void ChatRoom::onSendPlainText(QString &sender, QString &contentStr, QString &timeStr)
 {
+    qDebug() << "------send plain text------";
     qDebug() << "timeStr: " << timeStr;
     qDebug() << "sender: " << sender;
     qDebug() << "contentStr: " << contentStr;
+    qDebug() << "---------------------------";
 }
 
-void ChatRoom::onSendRichText()
+void ChatRoom::onSendRichText(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr)
 {
-    qDebug() << "send rich text";
+    qDebug() << "------send rich text------";
+    qDebug() << "timeStr: " << timeStr;
+    qDebug() << "sender: " << sender;
+    qDebug() << "contentStr: " << contentStr;
+    qDebug() << "emojiStr: " << emojiStr;
+    qDebug() << "--------------------------";
 }

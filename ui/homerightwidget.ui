@@ -94,7 +94,7 @@
           <number>5</number>
          </property>
          <item>
-          <widget class="QPushButton" name="emojiBtn">
+          <widget class="EmojiBtn" name="emojiBtn">
            <property name="minimumSize">
             <size>
              <width>24</width>
@@ -234,6 +234,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EmojiBtn</class>
+   <extends>QPushButton</extends>
+   <header>include/emojibtn.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

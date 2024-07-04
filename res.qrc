@@ -59,5 +59,6 @@
         <file>emoji/48.gif</file>
         <file>emoji/49.gif</file>
         <file>emoji/0.gif</file>
+        <file>qss/emojiPickerDialog.qss</file>
     </qresource>
 </RCC>

@@ -1,0 +1,3 @@
+QDialog {
+    border-image: url(:/images/chat_bg.jpg);
+}

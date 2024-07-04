@@ -11,11 +11,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //test
-    EmojiPickerDialog* emojiPicker = new EmojiPickerDialog();
-    emojiPicker->show();
-
-
     HomeWidget hw;
     LoginDialog ld;
     ld.show();
@@ -23,6 +18,8 @@ int main(int argc, char *argv[])
     WebSocketClient *wsc = WebSocketClient::getInstance();
     //初始化ChatRoom单例
     ChatRoom *cr = ChatRoom::getInstance();
+    //初始化EmojiPickerDialog单例
+    EmojiPickerDialog::getInstance();
 
     //进入聊天室成功
     QObject::connect(wsc, &WebSocketClient::enterRoomSuccess, [&](QString &username){
@@ -70,7 +67,7 @@ int main(int argc, char *argv[])
     QObject::connect(wsc, &WebSocketClient::connStateChange, [&](ConnState &state){
         hw.updateUIConnState(state);
     });
-
+    //收到新的普通文本信息
     QObject::connect(wsc, &WebSocketClient::sendPlainText, [&](QString &sender, QString &contentStr, QString &timeStr){
         QString unameShowStr = sender;
         if (sender == cr->getUsername()) {
@@ -79,9 +76,14 @@ int main(int argc, char *argv[])
         cr->onSendPlainText(unameShowStr, contentStr, timeStr);
         hw.updateUIChatMsg(unameShowStr, contentStr, timeStr);
     });
-
-    QObject::connect(wsc, &WebSocketClient::sendRichText, [&](){
-        cr->onSendRichText();
+    //收到新的富文本信息
+    QObject::connect(wsc, &WebSocketClient::sendRichText, [&](QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr){
+        QString unameShowStr = sender;
+        if (sender == cr->getUsername()) {
+            unameShowStr = "你";
+        }
+        cr->onSendRichText(unameShowStr, contentStr, emojiStr, timeStr);
+        hw.updateUIChatMsg2(unameShowStr, contentStr, emojiStr, timeStr);
     });
 
     return a.exec();

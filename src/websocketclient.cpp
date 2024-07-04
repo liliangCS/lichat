@@ -102,7 +102,12 @@ void WebSocketClient::onTextMessageReceived(QString message)
 
     else if (msgType == MessageType::SEND_RICH_TEXT)
     {
-        qDebug() << msgObj;
+        QString sender = msgObj["sender"].toString();
+        QString contentStr = msgObj["contentStr"].toString();
+        QString emojiStr = msgObj["emojiStr"].toString();
+        QString timeStr = msgObj["timeStr"].toString();
+
+        emit sendRichText(sender, contentStr, emojiStr, timeStr);
     }
 }
 

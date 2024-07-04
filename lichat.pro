@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/chatroom.cpp \
+    src/emojibtn.cpp \
     src/emojipickerdialog.cpp \
     src/helper.cpp \
     src/homeleftwidget.cpp \
@@ -38,6 +39,7 @@ SOURCES += \
 
 HEADERS += \
     include/chatroom.h \
+    include/emojibtn.h \
     include/emojipickerdialog.h \
     include/helper.h \
     include/homeleftwidget.h \

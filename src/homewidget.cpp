@@ -56,6 +56,11 @@ void HomeWidget::updateUIChatMsg(QString &sender, QString &contentStr, QString &
     ui->rightWidget->updateUIChatMsg(sender, contentStr, timeStr);
 }
 
+void HomeWidget::updateUIChatMsg2(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr)
+{
+    ui->rightWidget->updateUIChatMsg2(sender, contentStr, emojiStr, timeStr);
+}
+
 void HomeWidget::clearRoomChatMsg()
 {
     ui->rightWidget->clearRoomChatMsg();
