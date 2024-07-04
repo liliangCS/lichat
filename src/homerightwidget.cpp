@@ -64,12 +64,13 @@ void HomeRightWidget::updateUIChatMsg(QString &sender, QString &contentStr, QStr
 
 void HomeRightWidget::updateUIChatMsg2(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr)
 {
-     QStringList contentList = contentStr.split(QRegularExpression(""), Qt::KeepEmptyParts);
-     contentList = contentList.mid(1, contentList.size() - 2);
+    QStringList contentList = contentStr.split(QRegularExpression(""), Qt::KeepEmptyParts);
 
-
+    contentList = contentList.mid(1, contentList.size() - 2);
 
     QStringList emojiList = emojiStr.mid(0, emojiStr.size()-1).split(";");
+
+
     for (QString &emojiPair : emojiList)
     {
         int cIndex = emojiPair.split(":").front().toInt();
@@ -90,6 +91,7 @@ void HomeRightWidget::updateUIChatMsg2(QString &sender, QString &contentStr, QSt
                         </p>
                         <br />
                       )").arg(timeStr).arg(sender).arg(contentStr);
+
     ui->chatTextEdit->insertHtml(chatMsgStr);
 }
 

@@ -52,6 +52,12 @@ LoginDialog::LoginDialog(QWidget *parent) :
             return;
         }
 
+        if (ui->usernameLineEdit->text().size() > 7)
+        {
+            QMessageBox::information(this, "提示", "用户名不能超过7个字符");
+            return;
+        }
+
         if (WebSocketClient::getInstance()->getConnState() == ConnState::DISCONNECTED) {
             QMessageBox::information(this, "提示", "与服务器的连接断开，请检查服务器环境");
             return;
