@@ -101,8 +101,8 @@ void HomeRightWidget::clearRoomChatMsg()
 void HomeRightWidget::insertEmoji(QTextEdit *textEdit, int emojiIndex)
 {
     QString emojiStr = QString("<img src=':/emoji/%1.gif' style='vertical-align: top' />").arg(emojiIndex);
-    textEdit->insertHtml(emojiStr);
     updateEmojiStr(emojiIndex);
+    textEdit->insertHtml(emojiStr);
 }
 
 void HomeRightWidget::updateContentStr(const QString &contentStr)
@@ -113,7 +113,10 @@ void HomeRightWidget::updateContentStr(const QString &contentStr)
 
 void HomeRightWidget::updateEmojiStr(int emojiIndex)
 {
-    QString emoji = QString::number(m_contentStr.size() - 1) + ":" + QString::number(emojiIndex) + ";";
+    //获取光标位置
+    int cursorIndex = ui->inputTextEdit->textCursor().position();
+
+    QString emoji = QString::number(cursorIndex) + ":" + QString::number(emojiIndex) + ";";
     m_emojiStr += emoji;
 }
 
