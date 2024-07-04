@@ -26,6 +26,7 @@ public:
 
     // homeRightWidget
     void updateUIChatMsg(QString &sender, QString &contentStr, QString &timeStr);
+    void updateUIChatMsg2(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr);
     void clearRoomChatMsg();
 
 private:

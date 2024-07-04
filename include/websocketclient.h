@@ -46,7 +46,7 @@ signals:
     void someoneEnterRoom(QString &username, int userCount, QString &timeStr);
     void someoneLeaveRoom(QString &username, int userCount, QString &timeStr);
     void sendPlainText(QString &sender, QString &contentStr, QString &timeStr);
-    void sendRichText();
+    void sendRichText(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr);
     void connStateChange(ConnState &state);
 
 private slots:

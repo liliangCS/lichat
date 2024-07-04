@@ -13,22 +13,30 @@ class EmojiPickerDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EmojiPickerDialog(QWidget *parent = nullptr);
-    ~EmojiPickerDialog();
+    EmojiPickerDialog(const EmojiPickerDialog&) = delete;
+    EmojiPickerDialog& operator=(const EmojiPickerDialog&) = delete;
+
+    static EmojiPickerDialog* getInstance();
 
     void initEmojiPaths();
     void initEmojiGrid();
 
     void addEmojiButton(QGridLayout *layout, int row, int col, const QString &iconPath, int index);
 
-private:
-    Ui::EmojiPickerDialog *ui;
+    ~EmojiPickerDialog();
 
+protected:
+    void leaveEvent(QEvent *event);
+
+private:
+    explicit EmojiPickerDialog(QWidget *parent = nullptr);
+    static EmojiPickerDialog *instance;
+
+    Ui::EmojiPickerDialog *ui;
     QStringList *m_emojiPaths;
 
-
-public slots:
-    void onEmojiClicked(int index);
+signals:
+    void emojiClicked(int index);
 };
 
 #endif // EMOJIPICKERDIALOG_H

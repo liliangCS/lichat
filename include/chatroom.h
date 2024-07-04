@@ -34,6 +34,7 @@ public:
     void setUsername(QString &username);
 
     void sendPlainTextMsg(QString &contentStr);
+    void sendRichTextMsg(QString &contentStr, QString &emojiStr);
 
 
 private:
@@ -50,7 +51,7 @@ public slots:
     void onSomeoneEnterRoom(QString &username, int userCount);
     void onSomeoneLeaveRoom(QString &username, int userCount);
     void onSendPlainText(QString &sender, QString &contentStr, QString &timeStr);
-    void onSendRichText();
+    void onSendRichText(QString &sender, QString &contentStr, QString &emojiStr, QString &timeStr);
 };
 
 #endif // CHATROOM_H
