@@ -1,4 +1,4 @@
-Windows 64位安装包 [点击下载]()
+<a href="annex/附件1.docx" target="_blank">Windows 64位安装程序</a>
 
 > 开发环境：
 
