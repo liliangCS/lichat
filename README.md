@@ -1,4 +1,4 @@
-<a href="annex/附件1.docx" target="_blank">Windows 64位安装程序</a>
+<a href="https://github.com/liliangCS/lichat/blob/main/lichat_setup_0.0.1.exe" target="_blank">Windows 64位安装程序</a>
 
 > 开发环境：
 
