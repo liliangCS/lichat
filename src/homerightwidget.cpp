@@ -52,7 +52,7 @@ void HomeRightWidget::updateUIChatMsg(QString &sender, QString &contentStr, QStr
 {
     QString chatMsgStr = QString(R"(
                         <p>
-                            <span style="color: #888">%1&nbsp;&nbsp;</span>
+                            <span style="color: #888">%1&nbsp;</span>
                             <span style="color: red">%2</span>
                             <span style="color: green">说：</span>
                             <span style="color: blue">%3</span>
@@ -84,7 +84,7 @@ void HomeRightWidget::updateUIChatMsg2(QString &sender, QString &contentStr, QSt
 
     QString chatMsgStr = QString(R"(
                         <p>
-                            <span style="color: #888">%1&nbsp;&nbsp;</span>
+                            <span style="color: #888">%1&nbsp;</span>
                             <span style="color: red">%2</span>
                             <span style="color: green">说：</span>
                             <span style="color: blue">%3</span>
