@@ -1,3 +1,8 @@
+运行截图：
+
+![image](https://github.com/liliangCS/lichat/assets/85006433/b72ac69a-dd26-419f-97c4-f104cec0ce79)
+
+
 <a href="https://github.com/liliangCS/lichat/blob/main/lichat_setup_0.0.1.exe" target="_blank">Windows 64位安装程序</a>
 
 > 开发环境：
